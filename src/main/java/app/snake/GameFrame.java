@@ -2,7 +2,7 @@ package app.snake;
 
 import javax.swing.JFrame;
 
-public class GameFrame extends JFrame {
+class GameFrame extends JFrame {
 
     GameFrame() {
         this.add(new GamePanel());
