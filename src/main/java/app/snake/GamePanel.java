@@ -72,7 +72,7 @@ class GamePanel extends JPanel implements ActionListener {
                 if (i == 0) {
                     g.setColor(Color.green);
                 } else {
-                    g.setColor(new Color(45, 180, 0));
+                    g.setColor(new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255)));
                 }
                 g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
             }
@@ -118,10 +118,6 @@ class GamePanel extends JPanel implements ActionListener {
                 break;
             }
         }
-
-        if (x[0] < 0 || x[0] > SCREEN_WIDTH || y[0] < 0 || y[0] > SCREEN_HEIGHT) {
-            running = false;
-        }
     }
 
     private void checkApple() {
@@ -137,6 +133,18 @@ class GamePanel extends JPanel implements ActionListener {
         for (int i = bodyParts; i > 0; i--) {
             x[i] = x[i - 1];
             y[i] = y[i - 1];
+        }
+
+        if (x[0] < 0) {
+            x[0] = SCREEN_WIDTH;
+        } else if (x[0] > SCREEN_WIDTH) {
+            x[0] = 0;
+        }
+
+        if (y[0] < 0) {
+            y[0] = SCREEN_HEIGHT;
+        } else if (y[0] > SCREEN_HEIGHT) {
+            y[0] = 0;
         }
 
         switch (direction) {
